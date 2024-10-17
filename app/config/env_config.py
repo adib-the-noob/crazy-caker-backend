@@ -2,11 +2,12 @@ from pydantic_settings import BaseSettings
 
 class DevSettings(BaseSettings):
     DEBUG: bool = True
-    DATABASE_URL: str = 'sqlite:///db.sqlite3'
+    DATABASE_URL: str
     SECRET_KEY: str
     
     class Config:
         env_file = '.env.dev'
         
-dev_settings = DevSettings()
+settings = DevSettings()
 
+print(settings.DATABASE_URL)

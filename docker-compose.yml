@@ -22,7 +22,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://crazycake-dev-db-user:crazycake
+      DATABASE_URL: postgresql://crazycake-dev-db-user:crazycake-dev-db-password@localhost:5432/crazycake-dev-db
     depends_on:
       - crazycake-db
     networks:
