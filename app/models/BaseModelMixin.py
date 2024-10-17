@@ -8,3 +8,9 @@ class BaseModelMixin(Base):
     
     created_at = Column(String, default=datetime.now, nullable=False)
     updated_at = Column(String, default=datetime.now, onupdate=datetime.now, nullable=False)
+
+    def save(self, db):
+        db.add(self)
+        db.commit()
+        db.refresh(self)
+        return self
