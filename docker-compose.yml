@@ -8,8 +8,6 @@ services:
       POSTGRES_DB: crazycake-dev-db
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -27,9 +25,6 @@ services:
       - crazycake-db
     networks:
       - app-network
-
-volumes:
-  postgres_data:
 
 networks:
   app-network:

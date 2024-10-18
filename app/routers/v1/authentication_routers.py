@@ -12,25 +12,23 @@ from utils.jwt_utils import create_access_token
 
 router = APIRouter(
     tags=["authentication"],
-    prefix="/auth"
+    prefix="/auth/v1"
 )
 
 @router.post("/register", response_model=None)
 async def register_user(user: RegistrationSchema, db: get_db):
     user_services = UserServices(db=db)
+    if user_services.get_user_by_phn(phone_number=user.phone_number):
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Registration failed, phone number already exists"
+        )
     user = User(
         name=user.full_name,
-        email=user.email,
         phone_number=user.phone_number,
         password=get_password_hash(user.password)
     )
-    user_services.create_user(user)
-    data = {
-        "name": user.name,
-        "email": user.email,
-        "phone_number": user.phone_number
-    }
-    
+    user_services.create_user(user)    
     return JSONResponse(
         content={"message": "User created successfully", "data": data},
         status_code=status.HTTP_201_CREATED

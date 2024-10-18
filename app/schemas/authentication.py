@@ -5,7 +5,6 @@ class Token(BaseModel):
     token_type: str
     
 class RegistrationSchema(BaseModel):
-    email: str
     full_name: str
     phone_number: int
     password: str
