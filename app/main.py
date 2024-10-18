@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from database.db import Base, engine
-from routers import (
+from routers.v1 import (
     authentication_routers
 )
 

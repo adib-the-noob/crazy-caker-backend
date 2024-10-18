@@ -6,9 +6,9 @@ class Token(BaseModel):
     
 class RegistrationSchema(BaseModel):
     full_name: str
-    phone_number: int
+    phone_number: str
     password: str
     
 class LoginSchema(BaseModel):
-    email: str
+    phone_number: str
     password: str
