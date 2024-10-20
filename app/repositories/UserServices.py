@@ -10,12 +10,12 @@ class UserServices:
     
     def get_user_by_email(self, email: str) -> User:
         return self.db.query(User).filter(
-            User.email == email    
+            User.email == email,    
         ).first()
     
     def get_user_by_phn(self, phone_number: int) -> User:
         return self.db.query(User).filter(
-            User.phone_number == phone_number    
+            User.phone_number == phone_number,  
         ).first()
     
     def create_user(self, user: User) -> User:
