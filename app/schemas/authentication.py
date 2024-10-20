@@ -12,3 +12,8 @@ class RegistrationSchema(BaseModel):
 class LoginSchema(BaseModel):
     phone_number: str
     password: str
+    
+    
+class OtpPhnVerifySchema(BaseModel):
+    phone_number: str
+    otp: str
