@@ -18,6 +18,11 @@ class UserServices:
             User.phone_number == phone_number,  
         ).first()
     
+    def get_verified_user(self, phone_number: str) -> User:
+        return self.db.query(User).filter(
+            User.phone_number == phone_number, User.is_verified == True
+        ).first()
+    
     def create_user(self, user: User) -> User:
         self.db.add(user)
         self.db.commit()
@@ -44,5 +49,12 @@ class OtpService:
             return otp
         return None
     
-    def get_otp(self, phone_number: str) -> Otp:
-        return self.db.query(Otp).filter(Otp.phone_number == phone_number).first()
+    def get_otp(self, phone_number: str, otp: str) -> Otp:
+        user = self.db.query(User).filter(User.phone_number == phone_number).first()
+        if user is not None:
+            return self.db.query(Otp).filter(
+                Otp.phone_number == phone_number,
+                Otp.otp == otp,
+                Otp.has_used == False
+            ).first()
+        return None

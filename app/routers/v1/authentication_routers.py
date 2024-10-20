@@ -81,7 +81,7 @@ async def verify_phone_number(otpRequest: OtpPhnVerifySchema, db: get_db):
         )
     
     otp_service = OtpService(db=db)
-    otp = otp_service.get_otp(phone_number=otpRequest.phone_number)
+    otp = otp_service.get_otp(phone_number=otpRequest.phone_number, otp=otpRequest.otp)
     
     if not otp:
         raise HTTPException(
@@ -110,7 +110,7 @@ async def verify_phone_number(otpRequest: OtpPhnVerifySchema, db: get_db):
 @router.post("/login", response_model=None)
 async def user_login(user: LoginSchema, db: get_db):
     user_services = UserServices(db=db)
-    user_data = user_services.get_user_by_phn(phone_number=user.phone_number)
+    user_data = user_services.get_verified_user(phone_number=user.phone_number)
 
     if not user_data:
         raise HTTPException(
