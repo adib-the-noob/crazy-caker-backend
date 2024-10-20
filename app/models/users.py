@@ -28,7 +28,7 @@ class User(BaseModelMixin, Base):
         return f"<User(name={self.name}, email={self.email})>"
     
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.full_name}"
     
 
 class Otp(BaseModelMixin, Base):

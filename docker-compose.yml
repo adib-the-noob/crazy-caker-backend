@@ -16,6 +16,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     container_name: crazycake-api
+    command: sh -c "while [ ! -f /app/run.sh ]; do sleep 1; done; chmod +x /app/run.sh && /app/run.sh"
     expose:
       - "8080"
     environment:

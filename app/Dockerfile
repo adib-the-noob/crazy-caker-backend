@@ -15,6 +15,3 @@ COPY . /app
 
 # Expose port 8000 for FastAPI
 EXPOSE 8080
-
-# Command to run FastAPI
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
