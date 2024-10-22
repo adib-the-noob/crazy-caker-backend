@@ -9,13 +9,14 @@ from routers.v1 import (
 )
 from admin.admin_models import (
     UserAdmin,
-    OtpAdmin
+    OtpAdmin, 
+    ProfileAdmin
 )
 
 @asynccontextmanager
 async def init_db(app : FastAPI):
     try:
-        Base.metadata.create_all(bind=engine)
+        # Base.metadata.create_all(bind=engine)
         yield
     finally:
         pass
@@ -44,3 +45,4 @@ app.include_router(authentication_routers.router)
 # admin
 admin.add_view(UserAdmin)
 admin.add_view(OtpAdmin)
+admin.add_view(ProfileAdmin)

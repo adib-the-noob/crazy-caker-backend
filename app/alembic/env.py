@@ -20,6 +20,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 from models.users import User
 from models.users import Otp
+from models.profiles import Profile
 
 from database.db import Base
 
