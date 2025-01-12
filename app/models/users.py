@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
 
 from database.db import Base
+
+from models.profiles import Profile
 from models.BaseModelMixin import BaseModelMixin
 
 
@@ -23,6 +25,7 @@ class User(BaseModelMixin, Base):
     
     # Relationship
     otp = relationship("Otp", back_populates="user")
+    profile = relationship("Profile", back_populates="user")
     
     def __repr__(self):
         return f"<User(name={self.name}, email={self.email})>"
